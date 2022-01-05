@@ -20,8 +20,10 @@ namespace PictureManager
         {
             InitializeComponent();
 
-            string path = File.ReadAllText(_savePath);
-            if (path != null && path != "")
+            string path = "";
+            if (File.Exists(_savePath))
+            path = File.ReadAllText(_savePath);
+            if (!string.IsNullOrWhiteSpace(path))
             {
                 tbPictureFileName.Text = path;
                 pbMainPicture.Image = Bitmap.FromFile(path);
